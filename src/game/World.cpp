@@ -994,7 +994,7 @@ void World::SetInitialWorldSettings()
     sObjectMgr.SetDBCLocaleIndex(GetDefaultDbcLocale());    // Get once for all the locale index of DBC language (console/broadcasts)
 
     sLog.outString("Loading SpellTemplate...");
-    sObjectMgr.LoadSpellTemplate();
+    sObjectMgr.LoadSpellTemplate();	
 
     sLog.outString("Loading Script Names...");
     sScriptMgr.LoadScriptNames();
@@ -1006,7 +1006,7 @@ void World::SetInitialWorldSettings()
     sObjectMgr.LoadInstanceTemplate();
 
     sLog.outString("Loading SkillLineAbilityMultiMap Data...");
-    sSpellMgr.LoadSkillLineAbilityMap();
+    sSpellMgr.LoadSkillLineAbilityMap(); //ººƒ‹ Ï¡∑∂»
 
     sLog.outString("Loading SkillRaceClassInfoMultiMap Data...");
     sSpellMgr.LoadSkillRaceClassInfoMap();

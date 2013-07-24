@@ -688,11 +688,11 @@ void ScriptMgr::LoadGameObjectScripts()
     LoadScripts(sGameObjectScripts, "dbscripts_on_go_use");
 
     // check ids
-    for (ScriptMapMap::const_iterator itr = sGameObjectScripts.second.begin(); itr != sGameObjectScripts.second.end(); ++itr)
-    {
-        if (!sObjectMgr.GetGOData(itr->first))
-            sLog.outErrorDb("Table `dbscripts_on_go_use` has not existing gameobject (GUID: %u) as script id", itr->first);
-    }
+	for (ScriptMapMap::const_iterator itr = sGameObjectScripts.second.begin(); itr != sGameObjectScripts.second.end(); ++itr)
+	{
+		if (!sObjectMgr.GetGOData(itr->first))
+			sLog.outErrorDb("Table `dbscripts_on_go_use` has not existing gameobject (GUID: %u) as script id", itr->first);
+	}
 }
 
 void ScriptMgr::LoadGameObjectTemplateScripts()

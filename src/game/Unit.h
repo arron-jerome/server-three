@@ -802,7 +802,7 @@ class MovementInfo
         float GetSplineElevation() const { return splineElevation; }
         float GetPitch() const { return s_pitch; }
 
-    private:
+    public:
         // common
         ObjectGuid guid;
         uint32   moveFlags;                                 // see enum MovementFlags

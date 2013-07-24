@@ -362,14 +362,14 @@ Spell::Spell(Unit* caster, SpellEntry const* info, bool triggered, ObjectGuid or
     MANGOS_ASSERT(caster != NULL && info != NULL);
     MANGOS_ASSERT(info == sSpellStore.LookupEntry(info->Id) && "`info` must be pointer to sSpellStore element");
 
-    if (info->SpellDifficultyId && caster->IsInWorld() && caster->GetMap()->IsDungeon())
-    {
-        if (SpellEntry const* spellEntry = GetSpellEntryByDifficulty(info->SpellDifficultyId, caster->GetMap()->GetDifficulty(), caster->GetMap()->IsRaid()))
-            m_spellInfo = spellEntry;
-        else
-            m_spellInfo = info;
-    }
-    else
+	if (info->SpellDifficultyId && caster->IsInWorld() && caster->GetMap()->IsDungeon())
+	{
+		if (SpellEntry const* spellEntry = GetSpellEntryByDifficulty(info->SpellDifficultyId, caster->GetMap()->GetDifficulty(), caster->GetMap()->IsRaid()))
+			m_spellInfo = spellEntry;
+		else
+			m_spellInfo = info;
+	}
+	else
         m_spellInfo = info;
 
     m_triggeredBySpellInfo = triggeredBy;
@@ -715,6 +715,9 @@ void Spell::FillTargetMap()
                         case 0:
                         case TARGET_EFFECT_SELECT:
                             SetTargetMap(SpellEffectIndex(i), spellEffect->EffectImplicitTargetA, tmpUnitLists[i /*==effToIndex[i]*/]);
+							//fixed by arron at2013-07-16 
+							if (Unit* currentTarget = m_targets.getUnitTarget())
+								tmpUnitLists[i /*==effToIndex[i]*/].push_back(currentTarget);
                             break;
                         case TARGET_SCRIPT_COORDINATES:         // B case filled in CheckCast but we need fill unit list base at A case
                             SetTargetMap(SpellEffectIndex(i), spellEffect->EffectImplicitTargetA, tmpUnitLists[i /*==effToIndex[i]*/]);
@@ -3671,13 +3674,13 @@ void Spell::update(uint32 difftime)
     {
         case SPELL_STATE_PREPARING:
         {
-            if (m_timer)
-            {
-                if (difftime >= m_timer)
-                    m_timer = 0;
-                else
-                    m_timer -= difftime;
-            }
+			if (m_timer)
+			{
+				if (difftime >= m_timer)
+					m_timer = 0;
+				else
+					m_timer -= difftime;
+			}
 
             if (m_timer == 0 && !IsNextMeleeSwingSpell() && !IsAutoRepeat())
                 cast();

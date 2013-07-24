@@ -1451,7 +1451,7 @@ bool ChatHandler::isValidChatMessage(const char* message)
     /*
 
     valid examples:
-    |cff00aa00|Hcurrency:391|h[Рекомендательный значок Тол Барада]|h|r
+    |cff00aa00|Hcurrency:391|h[Рекомендательный значок То?Барада]|h|r
     |cffff8000|Hinstancelock:070000000177AF81:532:0:1|h[Каражан]|h|r            NYI
     |cffa335ee|Hitem:812:0:0:0:0:0:0:0:70|h[Glowing Brightwood Staff]|h|r
     |cff808080|Hquest:2278:47|h[The Platinum Discs]|h|r

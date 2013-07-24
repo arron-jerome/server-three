@@ -264,6 +264,32 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\tools\genrevision\genrevision.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\AUTHORS">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\ChangeLog">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\COPYING">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\INSTALL">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\NEWS">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\README">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\THANKS">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\WARNING">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

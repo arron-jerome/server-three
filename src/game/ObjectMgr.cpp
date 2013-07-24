@@ -1206,7 +1206,7 @@ void ObjectMgr::LoadCreatures()
         sLog.outString();
         sLog.outErrorDb(">> Loaded 0 creature. DB table `creature` is empty.");
         return;
-    }
+   }
 
     // build single time for check creature data
     std::set<uint32> difficultyCreatures[MAX_DIFFICULTY - 1];
@@ -1237,15 +1237,15 @@ void ObjectMgr::LoadCreatures()
         uint32 entry        = fields[ 1].GetUInt32();
 
         CreatureInfo const* cInfo = GetCreatureTemplate(entry);
-        if (!cInfo)
-        {
-            sLog.outErrorDb("Table `creature` has creature (GUID: %u) with non existing creature entry %u, skipped.", guid, entry);
-            continue;
-        }
+		if (!cInfo)
+		{
+			sLog.outErrorDb("Table `creature` has creature (GUID: %u) with non existing creature entry %u, skipped.", guid, entry);
+			continue;
+		}
 
-        CreatureData& data = mCreatureDataMap[guid];
+		CreatureData& data = mCreatureDataMap[guid];
 
-        data.id                 = entry;
+		data.id                 = entry;
         data.mapid              = fields[ 2].GetUInt32();
         data.modelid_override   = fields[ 3].GetUInt32();
         data.equipmentId        = fields[ 4].GetUInt32();
@@ -1361,6 +1361,13 @@ void ObjectMgr::LoadCreatures()
         if (gameEvent == 0 && GuidPoolId == 0 && EntryPoolId == 0) // if not this is to be managed by GameEvent System or Pool system
             AddCreatureToGrid(guid, &data);
 
+		if(count == 262143)
+		{
+			OutputDebugString("need debug");
+#ifdef _DEBUG
+			break;
+#endif
+		}
         ++count;
     }
     while (result->NextRow());
@@ -7144,7 +7151,14 @@ void ObjectMgr::LoadSpellTemplate()
             continue;
         }
         else
-            sSpellStore.InsertEntry(const_cast<SpellEntry*>(spellEntry), i);
+		{
+			const SpellEntry* exist = sSpellStore.LookupEntry(i);
+			if(exist)
+			{
+				//assert(false);
+			}
+			sSpellStore.InsertEntry(const_cast<SpellEntry*>(spellEntry), i);
+		}
     }
 }
 

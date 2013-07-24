@@ -1321,7 +1321,7 @@ struct MapEntry
 {
     uint32  MapID;                                          // 0        m_ID
     DBCString   internalname;                                   // 1        m_Directory
-    uint32  map_type;                                       // 2        m_InstanceType
+    uint32		map_type;                                       // 2        m_InstanceType
     uint32      mapFlags;                                       // 3        m_Flags (0x100 - CAN_CHANGE_PLAYER_DIFFICULTY)
     uint32      unk4;                                           // 4 4.0.1
     uint32      isPvP;                                          // 5        m_PVP 0 or 1 for battlegrounds (not arenas)

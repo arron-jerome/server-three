@@ -41,16 +41,16 @@ MapManager::MapManager()
 MapManager::~MapManager()
 {
     for (MapMapType::iterator iter = i_maps.begin(); iter != i_maps.end(); ++iter)
-        delete iter->second;
+		delete iter->second;
 
-    for (TransportSet::iterator i = m_Transports.begin(); i != m_Transports.end(); ++i)
-        delete *i;
+	for (TransportSet::iterator i = m_Transports.begin(); i != m_Transports.end(); ++i)
+		delete *i;
 
-    DeleteStateMachine();
+	DeleteStateMachine();
 }
 
 void
-MapManager::Initialize()
+	MapManager::Initialize()
 {
     InitStateMachine();
 }

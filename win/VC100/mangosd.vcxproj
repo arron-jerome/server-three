@@ -443,16 +443,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\AUTHORS" />
-    <None Include="..\..\ChangeLog" />
-    <None Include="..\..\COPYING" />
-    <None Include="..\..\INSTALL" />
-    <None Include="..\..\NEWS" />
-    <None Include="..\..\README" />
-    <None Include="..\..\THANKS" />
-    <None Include="..\..\WARNING" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\dep\src\gsoap\stdsoap2.cpp" />
     <ClCompile Include="..\..\src\mangosd\soapServer.cpp" />
     <ClCompile Include="..\..\src\mangosd\soapC.cpp" />

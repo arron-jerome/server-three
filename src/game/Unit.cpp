@@ -4404,9 +4404,13 @@ bool Unit::AddSpellAuraHolder(SpellAuraHolder* holder)
     holder->_AddSpellAuraHolder();
     m_spellAuraHolders.insert(SpellAuraHolderMap::value_type(holder->GetId(), holder));
 
-    for (int32 i = 0; i < MAX_EFFECT_INDEX; ++i)
-        if (Aura* aur = holder->GetAuraByEffectIndex(SpellEffectIndex(i)))
+	for (int32 i = 0; i < MAX_EFFECT_INDEX; ++i)
+	{
+		if (Aura* aur = holder->GetAuraByEffectIndex(SpellEffectIndex(i)))
+		{
             AddAuraToModList(aur);
+		}
+	}
 
     holder->ApplyAuraModifiers(true, true);                 // This is the place where auras are actually applied onto the target
     DEBUG_LOG("Holder of spell %u now is in use", holder->GetId());
@@ -10643,41 +10647,41 @@ void Unit::ProcDamageAndSpellFor(bool isVictim, Unit* pTarget, uint32 procFlag, 
 
         for (int32 i = 0; i < MAX_EFFECT_INDEX; ++i)
         {
-            Aura* triggeredByAura = triggeredByHolder->GetAuraByEffectIndex(SpellEffectIndex(i));
-            if (!triggeredByAura)
-                continue;
+			Aura* triggeredByAura = triggeredByHolder->GetAuraByEffectIndex(SpellEffectIndex(i));
+			if (!triggeredByAura)
+				continue;
+
+			if (procSpell)
+			{
+				if (spellProcEvent)
+				{
+					if (spellProcEvent->spellFamilyMask[i])
+					{
+						if (!procSpell->IsFitToFamilyMask(spellProcEvent->spellFamilyMask[i]))
+							continue;
+
+						// don't allow proc from cast end for non modifier spells
+						// unless they have proc ex defined for that
+						if (IsCastEndProcModifierAura(triggeredByHolder->GetSpellProto(), SpellEffectIndex(i), procSpell))
+						{
+							if (useCharges && procExtra != PROC_EX_CAST_END && spellProcEvent->procEx == PROC_EX_NONE)
+								continue;
+						}
+						else if (spellProcEvent->procEx == PROC_EX_NONE && procExtra == PROC_EX_CAST_END)
+							continue;
+					}
+					// don't check dbc FamilyFlags if schoolMask exists
+					else if (!triggeredByAura->CanProcFrom(procSpell, procFlag, spellProcEvent->procEx, procExtra, damage != 0, !spellProcEvent->schoolMask))
+						continue;
+				}
+				else if (!triggeredByAura->CanProcFrom(procSpell, procFlag, PROC_EX_NONE, procExtra, damage != 0, true))
+					continue;
+			}
 
             SpellEffectEntry const* spellEffect = triggeredByHolder->GetSpellProto()->GetSpellEffect(SpellEffectIndex(i));
             if (!spellEffect)
                 continue;
-
-            if (procSpell)
-            {
-                if (spellProcEvent)
-                {
-                    if (spellProcEvent->spellFamilyMask[i])
-                    {
-                        if (!procSpell->IsFitToFamilyMask(spellProcEvent->spellFamilyMask[i]))
-                            continue;
-
-                        // don't allow proc from cast end for non modifier spells
-                        // unless they have proc ex defined for that
-                        if (IsCastEndProcModifierAura(triggeredByHolder->GetSpellProto(), SpellEffectIndex(i), procSpell))
-                        {
-                            if (useCharges && procExtra != PROC_EX_CAST_END && spellProcEvent->procEx == PROC_EX_NONE)
-                                continue;
-                        }
-                        else if (spellProcEvent->procEx == PROC_EX_NONE && procExtra == PROC_EX_CAST_END)
-                            continue;
-                    }
-                    // don't check dbc FamilyFlags if schoolMask exists
-                    else if (!triggeredByAura->CanProcFrom(procSpell, procFlag, spellProcEvent->procEx, procExtra, damage != 0, !spellProcEvent->schoolMask))
-                        continue;
-                }
-                else if (!triggeredByAura->CanProcFrom(procSpell, procFlag, PROC_EX_NONE, procExtra, damage != 0, true))
-                    continue;
-            }
-
+         
             SpellAuraProcResult procResult = (*this.*AuraProcHandler[spellEffect->EffectApplyAuraName])(pTarget, damage, triggeredByAura, procSpell, procFlag, procExtra, cooldown);
             switch (procResult)
             {

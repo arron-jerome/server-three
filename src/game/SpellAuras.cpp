@@ -910,8 +910,8 @@ void PersistentAreaAura::Update(uint32 diff)
 
     Aura::Update(diff);
 
-    if (remove)
-        GetTarget()->RemoveAura(GetId(), GetEffIndex());
+	if (remove)
+		GetTarget()->RemoveAura(GetId(), GetEffIndex());
 }
 
 void Aura::ApplyModifier(bool apply, bool Real)
@@ -8955,8 +8955,12 @@ void SpellAuraHolder::RemoveAura(SpellEffectIndex index)
 void SpellAuraHolder::ApplyAuraModifiers(bool apply, bool real)
 {
     for (int32 i = 0; i < MAX_EFFECT_INDEX && !IsDeleted(); ++i)
+	{
         if (Aura* aur = GetAuraByEffectIndex(SpellEffectIndex(i)))
+		{
             aur->ApplyModifier(apply, real);
+		}
+	}
 }
 
 void SpellAuraHolder::_AddSpellAuraHolder()
