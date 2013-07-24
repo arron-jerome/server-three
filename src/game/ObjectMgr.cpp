@@ -1363,8 +1363,9 @@ void ObjectMgr::LoadCreatures()
 
 		if(count == 262143)
 		{
-			OutputDebugString("need debug");
 #ifdef _DEBUG
+			// add this because it take very long time to find the map value when count equals to 262143 in debug mode
+			// so we just break
 			break;
 #endif
 		}
@@ -7152,11 +7153,6 @@ void ObjectMgr::LoadSpellTemplate()
         }
         else
 		{
-			const SpellEntry* exist = sSpellStore.LookupEntry(i);
-			if(exist)
-			{
-				//assert(false);
-			}
 			sSpellStore.InsertEntry(const_cast<SpellEntry*>(spellEntry), i);
 		}
     }

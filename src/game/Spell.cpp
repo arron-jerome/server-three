@@ -715,6 +715,9 @@ void Spell::FillTargetMap()
                         case 0:
                         case TARGET_EFFECT_SELECT:
                             SetTargetMap(SpellEffectIndex(i), spellEffect->EffectImplicitTargetA, tmpUnitLists[i /*==effToIndex[i]*/]);
+							//there is no target in most spells 
+							//i don't know why 
+							//just add it here
 							//fixed by arron at2013-07-16 
 							if (Unit* currentTarget = m_targets.getUnitTarget())
 								tmpUnitLists[i /*==effToIndex[i]*/].push_back(currentTarget);
