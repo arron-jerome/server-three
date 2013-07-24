@@ -37,9 +37,6 @@
     <Filter Include="BattleGround">
       <UniqueIdentifier>{0af4d063-6d01-4546-a429-59bd828ab270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="anticheat">
-      <UniqueIdentifier>{76f3e94e-bf3f-487a-bc6f-acec4ab02c4f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\game\AccountMgr.cpp">
@@ -565,12 +562,6 @@
     <ClCompile Include="..\..\src\game\BattleGround\BattleGroundWS.cpp">
       <Filter>BattleGround</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Anticheat\AnticheatData.cpp">
-      <Filter>anticheat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Anticheat\AnticheatMgr.cpp">
-      <Filter>anticheat</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\game\AccountMgr.h">
@@ -1083,12 +1074,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\game\BattleGround\BattleGroundSA.h">
       <Filter>BattleGround</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Anticheat\AnticheatMgr.h">
-      <Filter>anticheat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Anticheat\AnticheatData.h">
-      <Filter>anticheat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

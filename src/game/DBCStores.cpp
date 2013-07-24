@@ -624,6 +624,10 @@ void LoadDBCStores(const std::string& dataPath)
                     MANGOS_ASSERT(spellEffect->EffectMiscValue >= 0 && spellEffect->EffectMiscValue < MAX_POWERS);
                     break;
             }
+			if(spellEffect->EffectSpellId == 64681)
+			{
+				printf("just for debug");
+			}
             sSpellEffectMap[spellEffect->EffectSpellId].effects[spellEffect->EffectIndex] = spellEffect;
         }
     }
