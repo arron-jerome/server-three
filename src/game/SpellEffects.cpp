@@ -2935,7 +2935,7 @@ void Spell::EffectDummy(SpellEffectEntry const* effect)
 							m_caster->CastSpell(unitTarget,79057,true);
 						return;
 					}
-				}
+			}
 
             // Conjure Mana Gem
             if (effect->EffectIndex == EFFECT_INDEX_1 && m_spellInfo->GetSpellEffectIdByIndex(EFFECT_INDEX_0) == SPELL_EFFECT_CREATE_ITEM)

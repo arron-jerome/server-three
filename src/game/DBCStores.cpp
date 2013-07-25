@@ -624,7 +624,38 @@ void LoadDBCStores(const std::string& dataPath)
                     MANGOS_ASSERT(spellEffect->EffectMiscValue >= 0 && spellEffect->EffectMiscValue < MAX_POWERS);
                     break;
             }
-			if(spellEffect->EffectSpellId == 64681)
+			if(spellEffect->EffectSpellId == 64681 && spellEffect->EffectIndex != 0)
+			{
+				sSpellEffectMap[32235].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[32239].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[32240].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[32345].effects[spellEffect->EffectIndex] = spellEffect;
+				for(int id = 32242; id <= 32246; id++)
+				{
+					sSpellEffectMap[id].effects[spellEffect->EffectIndex] = spellEffect;
+				}
+				for(int id = 32289; id <= 32297; id++)
+				{
+					sSpellEffectMap[id].effects[spellEffect->EffectIndex] = spellEffect;
+				}
+
+
+				sSpellEffectMap[93226].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[110039].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[37015].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[41516].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[43927].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[97493].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[59567].effects[spellEffect->EffectIndex] = spellEffect;
+				sSpellEffectMap[61309].effects[spellEffect->EffectIndex] = spellEffect;
+			}
+			//32235
+			//32239
+			//32240
+			//32242-46
+			//32289-97
+			//32345
+			if(spellEffect->EffectSpellId == 32245)
 			{
 				printf("just for debug");
 			}

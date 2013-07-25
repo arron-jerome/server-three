@@ -715,12 +715,6 @@ void Spell::FillTargetMap()
                         case 0:
                         case TARGET_EFFECT_SELECT:
                             SetTargetMap(SpellEffectIndex(i), spellEffect->EffectImplicitTargetA, tmpUnitLists[i /*==effToIndex[i]*/]);
-							//there is no target in most spells 
-							//i don't know why 
-							//just add it here
-							//fixed by arron at2013-07-16 
-							if (Unit* currentTarget = m_targets.getUnitTarget())
-								tmpUnitLists[i /*==effToIndex[i]*/].push_back(currentTarget);
                             break;
                         case TARGET_SCRIPT_COORDINATES:         // B case filled in CheckCast but we need fill unit list base at A case
                             SetTargetMap(SpellEffectIndex(i), spellEffect->EffectImplicitTargetA, tmpUnitLists[i /*==effToIndex[i]*/]);
@@ -1899,14 +1893,16 @@ void Spell::SetTargetMap(SpellEffectIndex effIndex, uint32 targetMode, UnitList&
         {
             if (EffectChainTarget <= 1)
             {
-                if (Unit* pUnitTarget = m_caster->SelectMagnetTarget(m_targets.getUnitTarget(), this, effIndex))
+				if (Unit* pUnitTarget = m_caster->SelectMagnetTarget(m_targets.getUnitTarget(), this, effIndex))
                 {
                     if (m_targets.getUnitTarget() != pUnitTarget)
                     {
                         m_targets.setUnitTarget(pUnitTarget);
                         m_spellFlags |= SPELL_FLAG_REDIRECTED;
-                        targetUnitMap.push_back(pUnitTarget);
+						//fixed no target when only one enemy was selected 2013-07-25
+                        //targetUnitMap.push_back(pUnitTarget);
                     }
+					targetUnitMap.push_back(pUnitTarget);
                 }
             }
             else

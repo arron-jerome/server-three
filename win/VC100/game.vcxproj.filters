@@ -7,9 +7,6 @@
     <Filter Include="Motion generators">
       <UniqueIdentifier>{7ade1743-efdc-47a9-86a5-77ab3ad233a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{1ea64f0d-ee7e-492e-8516-2f2c5be80a2a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server">
       <UniqueIdentifier>{af0d7b92-aa88-4870-bf29-5f9856a954d5}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="BattleGround">
       <UniqueIdentifier>{0af4d063-6d01-4546-a429-59bd828ab270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{1ea64f0d-ee7e-492e-8516-2f2c5be80a2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
